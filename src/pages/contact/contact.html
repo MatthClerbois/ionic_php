@@ -1,0 +1,31 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<h1>Personnal Profile</h1>
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-avatar item-left>
+		<img src="images/moyai.png">
+	</ion-avatar>
+	<ion-card>
+		<h1>firstname : {{profile?.firstname}} </h1>
+	</ion-card>
+	<ion-card>
+		<h1>lastname : {{profile?.lastname}}</h1>
+	</ion-card>
+	<ion-card class="icon ion-email">
+		email : {{profile?.email}} 
+	</ion-card>
+	<ion-card>
+		ID : {{profile?.ID}} 
+	</ion-card>
+	<ion-card>
+		password : {{profile?.password}} 
+	</ion-card>
+	<ion-card>
+		date_creation : {{profile?.date_creation|date:"MM/dd/yy"}} 
+	</ion-card>
+</ion-content>

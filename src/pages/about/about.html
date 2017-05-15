@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      List of Items
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+   <ion-item *ngFor="let item of items">
+       <button
+         ion-button
+         color="primary"
+         item-right 
+         full
+         (click)=test(item)>
+       {{ item.subject }}, user assigned : {{item.user}}
+     </button>
+   </ion-item>
+	
+</ion-content>
