@@ -7,25 +7,15 @@
 </ion-header>
 
 <ion-content>
-	<ion-avatar item-left>
-		<img src="images/moyai.png">
-	</ion-avatar>
 	<ion-card>
-		<h1>firstname : {{profile?.firstname}} </h1>
-	</ion-card>
-	<ion-card>
-		<h1>lastname : {{profile?.lastname}}</h1>
-	</ion-card>
-	<ion-card class="icon ion-email">
-		email : {{profile?.email}} 
-	</ion-card>
-	<ion-card>
-		ID : {{profile?.ID}} 
-	</ion-card>
-	<ion-card>
-		password : {{profile?.password}} 
-	</ion-card>
-	<ion-card>
-		date_creation : {{profile?.date_creation|date:"MM/dd/yy"}} 
+		<img  class="displayed"  height="250 px" width="150 px" src="images/moyai.png">
+		<ion-card-content>
+			<h1>firstname : {{profile?.firstname}} </h1>
+			<h1>lastname : {{profile?.lastname}}</h1><br/>
+			email : {{profile?.email}} <br/>
+			ID : {{profile?.ID}} <br/>
+			password : {{profile?.password}} <br/>
+			date_creation : {{profile?.date_creation|date:"dd/MM/yy"}} <br/>
+		</ion-card-content>
 	</ion-card>
 </ion-content>
