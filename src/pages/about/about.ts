@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
 @Component({
   selector: 'page-about',
@@ -12,13 +13,24 @@ export class AboutPage {
 	public items: any=[];
 
   constructor(	public navCtrl: NavController,
-  				public http: Http) {
+  				public http: Http,
+  				private secureStorage: SecureStorage) {
 
   }
 
-   ionViewWillEnter()
-   {
+   ionViewWillEnter(){
       this.listItems();
+   }
+
+   create_key(){
+		this.secureStorage.create('store_id')
+	    .then((storage: SecureStorageObject) => {				 
+	     	storage.set('user_id','123456789')
+	     	  .then(
+	     	   data => console.log('hello : '+data),
+	     	    error => console.log(error)
+	     	);
+	  	});
    }
 
   	listItems(){

@@ -58,7 +58,7 @@ export class LoginPage {
 				loader.dismissAll();     	
 				this.sendNotification('Welcome '+this.user_info.firstname+' '+this.user_info.lastname+' !');
 
-				this.secureStorage.create('user_id')
+				this.secureStorage.create('store_id')
 			    .then((storage: SecureStorageObject) => {				 
 			     	storage.set('user_id',this.user_info.ID)
 			     	  .then(

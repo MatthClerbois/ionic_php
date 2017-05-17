@@ -1,12 +1,15 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      List of Items
+      List of Iteeems
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+<ion-card>
+  	<button ion-button primary full (click)=create_key()>create key</button>
+</ion-card>
 
    <ion-item *ngFor="let item of items">
        <button
