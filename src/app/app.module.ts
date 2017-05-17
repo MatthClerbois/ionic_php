@@ -9,8 +9,10 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { UserPage } from '../pages/user/user';
-import { MainsysPage } from '../pages/mainsys/mainsys';
 import { LoginPage } from '../pages/login/login';
+import { MainsysPage } from '../pages/mainsys/mainsys';
+import { ItemDetailPage } from '../pages/item-detail/item-detail';
+import { ItemHistoryPage } from '../pages/item-history/item-history';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -24,6 +26,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     UserPage,
+    ItemHistoryPage,
+    ItemDetailPage,
     MainsysPage,
     LoginPage
   ],
@@ -37,7 +41,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     AboutPage,
     ContactPage,
+    ItemHistoryPage,
     HomePage,
+    ItemDetailPage,
     TabsPage,
     UserPage,
     MainsysPage,

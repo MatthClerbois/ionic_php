@@ -1,24 +1,57 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,ToastController,LoadingController  } from 'ionic-angular';
+import { Http,Headers, RequestOptions } from '@angular/http';
+import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { LoginPage } from '../../login/login';
 
-/**
- * Generated class for the ItemDetail page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-@IonicPage()
 @Component({
   selector: 'page-item-detail',
   templateUrl: 'item-detail.html',
 })
-export class ItemDetail {
+export class ItemDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	public item : any=[];
+ 	private url : string  = 'http://localhost/dashboard/ionic_php/get_item_detail.php';
+ 	private item_id:number;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemDetail');
-  }
+    constructor(	public navCtrl: NavController,
+	  				public http: Http,
+					public loadingCtrl:LoadingController,
+					public toastCtrl  : ToastController,
+  					public navParams: NavParams) {
+		let loader = this.loadingCtrl.create({
+				content: "Logging in..."
+		});
+		loader.present();
+
+	    let body     : string   = "key=item_detail&item_id=" + this.item_id,
+	    			type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+	    			headers  : any      = new Headers({ 'Content-Type': type}),
+	    			options  : any      = new RequestOptions({ headers: headers });
+	    this.http.post(this.url, body, options)
+	    	.subscribe((data) => {
+	    		this.item = data.json();
+	    		this.item=this.item[0];
+	    		console.log(this.item);
+	    		loader.dismissAll();     	
+	    		this.sendNotification('Selected item n°'+this.item.ID);
+	    });
+    }
+  
+    ionViewDidLoad() {
+      console.log('ItemDetail loaded');
+    }
+  
+    openPage(page){
+    	this.navCtrl.setRoot(page.component);
+    }
+  
+ 	sendNotification(message)  : void{
+		let notification = this.toastCtrl.create({
+				message       : message,
+				duration      : 2000
+		});
+		notification.present();
+ 	}
 
 }
