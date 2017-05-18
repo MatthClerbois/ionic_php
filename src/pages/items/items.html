@@ -3,13 +3,16 @@
     <ion-title>
       Items
     </ion-title>
+    <ion-searchbar (ionInput)="getItems($event)">
+    	
+    </ion-searchbar>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 		<h1><u>Subject</u></h1>
     	<ion-item *ngFor="let item of items">    		 
-			<button ion-button block outline round>
+			<button ion-button block outline round (click)=itemInfo(item.ID)>
 			  <h2>{{ item.subject }}</h2>
 			</button>
     	</ion-item>	

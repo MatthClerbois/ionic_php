@@ -12,6 +12,7 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
 export class ItemsPage {
 
 	public items: any=[];
+	public items_tmp: any=[];
 	public item_id:number;
 	private url : string  = 'http://localhost/dashboard/ionic_php/get_items.php';
 	 
@@ -25,15 +26,21 @@ export class ItemsPage {
         this.listItems();
     }
 
-   	/*getItems(ev: any) {
+    initializeItems() {
+       this.items =this.items_tmp;
+     }
+
+
+   	getItems(ev: any) {
+   		this.initializeItems();
    	    let val = ev.target.value;
 
    	    if (val && val.trim() != '') {
-   	      this.items = this.items.filter((item) => {
-   	        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-   	      })
+   	      	this.items = this.items.filter((item) => {
+				return (item.subject.toLowerCase().indexOf(val.toLowerCase()) > -1);
+			})
    	    }
-   	}*/
+   	}
 
   	listItems(){
      
@@ -47,6 +54,7 @@ export class ItemsPage {
       	.subscribe(data =>
       	{
       	   this.items = data;
+      	   this.items_tmp=data;
       	});
     }
 
