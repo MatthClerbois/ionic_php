@@ -7,15 +7,13 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
   templateUrl: 'mainsys.html',
 })
 export class MainsysPage {
-	st = SecureStorageObject;
 	constructor(public navCtrl: NavController,
 				public navParams: NavParams,
 				private secureStorage: SecureStorage) {
 	}	
 
 	ionViewDidLoad() {
-
-	console.log('ionViewDidLoad Mainsys');
+		console.log('ionViewDidLoad Mainsys');
 	}	
 
 	test(){	

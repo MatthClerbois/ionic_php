@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>item n°{{item.ID}}</ion-title>
+    <ion-title>item n°{{item?.ID}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,7 +12,7 @@
 	  <ion-header>
 	    <ion-toolbar>
 	      <ion-title>More informations</ion-title>
-	    </ion-toolbar>
+	    </ion-toolbar><
 	  </ion-header>
 	  <ion-content>
 	    <ion-list>
@@ -20,11 +20,11 @@
             	<ion-icon name="archive"></ion-icon>
 	        	History
       		</button>
-	     	<button ion-item menuToggle (click)="openPage(CustomFieldsPage)">
+	     	<button ion-item menuToggle (click)="openPage(HomePage)">
   	     	 	<ion-icon name="list"></ion-icon>
 	     	  	Fields Value
 	     	</button>
-	     	<button ion-item menuToggle (click)="openPage(CustomFieldsPage)">
+	     	<button ion-item menuToggle (click)="openPage(HomePage)">
   	     		<ion-icon name="home" ></ion-icon>
 	     	  Home
 	     	</button>

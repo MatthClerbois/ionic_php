@@ -49,23 +49,28 @@ export class LoginPage {
 
 		this.http.post(this.url, body, options)
 			.subscribe((data) => {
-				console.log(body);
-				console.log(data);
 				this.user_info = data.json();
 				this.user_info=this.user_info[0];
+				console.log('user_info');
 				console.log(this.user_info);
-				this.navCtrl.setRoot(TabsPage);
-				loader.dismissAll();     	
-				this.sendNotification('Welcome '+this.user_info.firstname+' '+this.user_info.lastname+' !');
+				if(this.user_info!==undefined){
+					loader.dismissAll();     	
+					this.navCtrl.setRoot(TabsPage);
+					this.sendNotification('Welcome '+this.user_info.firstname+' '+this.user_info.lastname+' !');
 
-				this.secureStorage.create('store_id')
-			    .then((storage: SecureStorageObject) => {				 
-			     	storage.set('user_id',this.user_info.ID)
-			     	  .then(
-			     	   data => console.log(data),
-			     	    error => console.log(error)
-			     	);
-			  	});
+					this.secureStorage.create('store_id')
+				    .then((storage: SecureStorageObject) => {				 
+				     	storage.set('user_id',this.user_info.ID)
+				     	  .then(
+				     	   data => console.log(data),
+				     	    error => console.log(error)
+				     	);
+				  	});
+				}else {
+					this.sendNotification('Wrong infos, try again.');
+					loader.dismissAll();     	
+				}
+
 		});
 	}
 

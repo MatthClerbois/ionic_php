@@ -12,9 +12,7 @@ export class HomePage {
 
    public items : any = [];
    constructor(public navCtrl: NavController,
-               public http   : Http)
-   {
-
+               public http   : Http){
    }
 
 
