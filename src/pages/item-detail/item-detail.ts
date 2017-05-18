@@ -28,7 +28,7 @@ export class ItemDetailPage {
   					public navParams: NavParams,
                		public fb         : FormBuilder,
 					private secureStorage: SecureStorage) {
-		//this.loader.present();
+		this.helpNotification('Click on Grey text (right side) to modify Values');
 		this.form = fb.group({
 		   "subject"                  : ["", Validators.required],
 		   "comment"                  : ["", Validators.required],
@@ -62,9 +62,21 @@ export class ItemDetailPage {
  	sendNotification(message)  : void{
 		let notification = this.toastCtrl.create({
 				message       : message,
-				duration      : 2000
+				duration      : 2000,
 		});
 		notification.present();
  	}
 
+ 	helpNotification(message): void{
+		let notification = this.toastCtrl.create({
+				message		: message,
+				position	: 'top',
+				showCloseButton:true,
+				closeButtonText: 'Got It!'
+		});
+		notification.present();
+		notification.onDidDismiss(() => {
+		   console.log('Dismissed toast');
+		 });
+ 	}
 }

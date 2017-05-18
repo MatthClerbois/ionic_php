@@ -1,66 +1,77 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>item n°{{item?.ID}}</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-
-<ion-content padding>
-	<form [formGroup]="form" (ngSubmit)="saveEntry()">
-	<ion-grid text-center color="primary">
-		<ion-card>
-		  	<ion-row>
-		  	 	<ion-col width-33><u>Subject</u></ion-col><ion-col width-67>
-		  	 		<ion-textarea
-		  	 		   placeholder="{{item?.subject}}"
-		  	 		   formControlName="subject"
-		  	 		   rows="6"></ion-textarea>
-	  	 		</ion-col>
-		 	</ion-row>
-	 	</ion-card>
-	 	<ion-card>
-		  	<ion-row>
-		  	 	<ion-col width-33><u>Comment</u></ion-col><ion-col width-67>
-		  	 		{{item?.comment}}
-	  	 		</ion-col>
-		 	</ion-row>
-	 	</ion-card>
-	 	<ion-card>
-		  	<ion-row>
-		  	 	<ion-col width-33><u>User</u></ion-col><ion-col width-67>
-		  	 		{{item?.user}}
-	  	 		</ion-col>
-		 	</ion-row>
-	 	</ion-card>
-	 	<ion-card>
-		  	<ion-row>
-		  	 	<ion-col width-33><u>Category</u></ion-col><ion-col width-67>
-		  	 		{{item?.category}}
-	  	 		</ion-col>
-		 	</ion-row>
-	 	</ion-card>
-	 	<ion-card>
-		  	<ion-row>
-		  	 	<ion-col width-33><u>Workflow</u></ion-col><ion-col width-67>
-		  	 		{{item?.workflow}}
-	  	 		</ion-col>
-		 	</ion-row>
-	 	</ion-card>
-	 	<ion-card>
-		  	<ion-row>
-		  	 	<ion-col width-33><u>Status</u></ion-col><ion-col width-67>
-		  	 		{{item?.status}}
-	  	 		</ion-col>
-		 	</ion-row>
-	 	</ion-card>
-    </ion-grid>
-    </form>
-</ion-content>
-
-
+<ion-menu [content]="content">
+	<ion-header>
+	  <ion-navbar>
+	    <ion-title>item n°{{item?.ID}}</ion-title>
+	  </ion-navbar>
+	</ion-header>
+	<ion-content padding>
+		<form [formGroup]="form" (ngSubmit)="saveEntry()">
+		<ion-grid text-center color="primary">
+			<ion-card>
+			  	<ion-row>
+			  	 	<ion-col width-33><h2><u>Subject</u></h2></ion-col><ion-col width-67>
+			  	 		<ion-textarea
+			  	 		   placeholder="{{item?.subject}}"
+			  	 		   formControlName="subject"
+						></ion-textarea>
+		  	 		</ion-col>
+			 	</ion-row>
+		 	</ion-card>
+		 	<ion-card>
+			  	<ion-row>
+			  	 	<ion-col width-33><h2><u>User</u></h2></ion-col><ion-col width-67>
+			  	 		<ion-textarea
+				  	 		   placeholder="{{item?.user}}"
+				  	 		   formControlName="user"
+							></ion-textarea>
+		  	 		</ion-col>
+			 	</ion-row>
+		 	</ion-card>
+		 	<ion-card>
+			  	<ion-row>
+			  	 	<ion-col width-33><h2><u>Category</u></h2></ion-col><ion-col width-67>
+			  	 		<ion-textarea
+			  	 		   placeholder="{{item?.category}}"
+			  	 		   formControlName="category"
+						></ion-textarea>
+		  	 		</ion-col>
+			 	</ion-row>
+		 	</ion-card>
+		 	<ion-card>
+			  	<ion-row>
+			  	 	<ion-col width-33><h2><u>Workflow</u></h2></ion-col><ion-col width-67>
+			  	 		<ion-textarea
+			  	 		   placeholder="{{item?.workflow}}"
+			  	 		   formControlName="workflow"
+						></ion-textarea>
+		  	 		</ion-col>
+			 	</ion-row>
+		 	</ion-card>
+		 	<ion-card>
+			  	<ion-row>
+			  	 	<ion-col width-33><h2><u>Status</u></h2></ion-col><ion-col width-67>
+			  	 		<ion-textarea
+			  	 		   placeholder="{{item?.status}}"
+			  	 		   formControlName="status"
+						></ion-textarea>
+		  	 		</ion-col>
+			 	</ion-row>
+		 	</ion-card>
+	 	 	<ion-card>
+	 		  	<ion-row>
+	 		  	 	<ion-col width-33><h2><u>Comment</u></h2></ion-col><ion-col width-67>
+	 		  	 		<ion-textarea
+	 		  	 		   	placeholder="{{item?.comment}}"
+	 		  	 		   	formControlName="comment"
+	 						rows="10"></ion-textarea>
+	 	  	 		</ion-col>
+	 		 	</ion-row>
+	 	 	</ion-card>
+	    </ion-grid>
+	    </form>
+	</ion-content>
+</ion-menu>
+<ion-nav ##content [root]="ItemDetailPage"></ion-nav>
 <!-- <ion-content padding>
 	<ion-menu [content]="content">
 	  <ion-header>
@@ -81,6 +92,10 @@
 	     	<button ion-item menuToggle (click)="openPage(HomePage)">
   	     		<ion-icon name="home" ></ion-icon>
 	     	  Home
+	     	</button>
+	     	<button ion-item menuToggle (click)="openPage(NotePage)">
+  	     		<ion-icon name="note" ></ion-icon>
+	     	  Notes
 	     	</button>
 	    </ion-list>
 	  </ion-content>
