@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-navbar>
 		<ion-title>
-			<h1>Personnal Profile</h1>
+			<h1>Profile</h1>
 		</ion-title>
 	</ion-navbar>
 </ion-header>
@@ -18,4 +18,8 @@
 			date_creation : {{profile?.date_creation|date:"dd/MM/yy"}} <br/>
 		</ion-card-content>
 	</ion-card>
+		<button ion-button end round outline color="danger" (click)=logout()>
+			Logout -  
+			<ion-icon name="md-exit" item-right></ion-icon>
+     	</button>
 </ion-content>
