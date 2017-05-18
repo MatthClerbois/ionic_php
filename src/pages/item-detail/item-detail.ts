@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams,ToastController,LoadingController  } from 'ionic-angular';
 import { Http,Headers, RequestOptions } from '@angular/http';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { LoginPage } from '../../login/login';
 import { ItemsPage } from '../../items/items';
@@ -11,6 +12,8 @@ import { ItemsPage } from '../../items/items';
 })
 export class ItemDetailPage {
 
+
+	public form : FormGroup;
 	public item : any=[];
  	private url : string  = 'http://localhost/dashboard/ionic_php/get_item_detail.php';
  	private item_id:number =this.navParams.get('item_id');
@@ -23,8 +26,17 @@ export class ItemDetailPage {
 					public loadingCtrl:LoadingController,
 					public toastCtrl  : ToastController,
   					public navParams: NavParams,
+               		public fb         : FormBuilder,
 					private secureStorage: SecureStorage) {
 		//this.loader.present();
+		this.form = fb.group({
+		   "subject"                  : ["", Validators.required],
+		   "comment"                  : ["", Validators.required],
+		   "status"                  : ["", Validators.required],
+		   "user"                  : ["", Validators.required],
+		   "category"                  : ["", Validators.required],
+		   "workflow"                  : ["", Validators.required]
+		});
     }
   
     ionViewDidLoad() {

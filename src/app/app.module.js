@@ -11,7 +11,6 @@ import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { ItemsPage } from '../pages/items/items';
 import { ProfilePage } from '../pages/profile/profile';
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { UserPage } from '../pages/user/user';
 import { LoginPage } from '../pages/login/login';
@@ -32,7 +31,6 @@ AppModule = __decorate([
             MyApp,
             ItemsPage,
             ProfilePage,
-            HomePage,
             TabsPage,
             UserPage,
             ItemHistoryPage,
@@ -51,7 +49,6 @@ AppModule = __decorate([
             ItemsPage,
             ProfilePage,
             ItemHistoryPage,
-            HomePage,
             ItemDetailPage,
             TabsPage,
             UserPage,

@@ -10,12 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { ItemsPage } from '../items/items';
 import { ProfilePage } from '../profile/profile';
-import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
 import { MainsysPage } from '../mainsys/mainsys';
 var TabsPage = (function () {
     function TabsPage() {
-        this.tab1Root = HomePage;
         this.tab2Root = ItemsPage;
         this.tab3Root = ProfilePage;
         this.tab4Root = UserPage;

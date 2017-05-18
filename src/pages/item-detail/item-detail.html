@@ -9,11 +9,15 @@
 
 
 <ion-content padding>
+	<form [formGroup]="form" (ngSubmit)="saveEntry()">
 	<ion-grid text-center color="primary">
 		<ion-card>
 		  	<ion-row>
 		  	 	<ion-col width-33><u>Subject</u></ion-col><ion-col width-67>
-		  	 		{{item?.subject}}
+		  	 		<ion-textarea
+		  	 		   placeholder="{{item?.subject}}"
+		  	 		   formControlName="subject"
+		  	 		   rows="6"></ion-textarea>
 	  	 		</ion-col>
 		 	</ion-row>
 	 	</ion-card>
@@ -53,6 +57,7 @@
 		 	</ion-row>
 	 	</ion-card>
     </ion-grid>
+    </form>
 </ion-content>
 
 
