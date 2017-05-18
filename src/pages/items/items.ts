@@ -22,7 +22,6 @@ export class ItemsPage {
   	}
 
     ionViewWillEnter(){
-      debugger;
         this.listItems();
     }
 

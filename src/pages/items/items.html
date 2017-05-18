@@ -7,16 +7,10 @@
 </ion-header>
 
 <ion-content padding>
-
-   <ion-item *ngFor="let item of items">
-       {{ item.subject }}, user assigned : {{item.user}}
-       <button
-           ion-button
-           color="primary"
-           item-right 
-           ion-icon="information-circle"
-           (click)=itemInfo(item.ID)>
-     </button>
-   </ion-item>
-	
+		<h1><u>Subject</u></h1>
+    	<ion-item *ngFor="let item of items">    		 
+			<button ion-button block outline round>
+			  <h2>{{ item.subject }}</h2>
+			</button>
+    	</ion-item>	
 </ion-content>

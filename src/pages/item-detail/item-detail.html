@@ -7,7 +7,56 @@
 </ion-header>
 
 
+
 <ion-content padding>
+	<ion-grid text-center color="primary">
+		<ion-card>
+		  	<ion-row>
+		  	 	<ion-col width-33><u>Subject</u></ion-col><ion-col width-67>
+		  	 		{{item?.subject}}
+	  	 		</ion-col>
+		 	</ion-row>
+	 	</ion-card>
+	 	<ion-card>
+		  	<ion-row>
+		  	 	<ion-col width-33><u>Comment</u></ion-col><ion-col width-67>
+		  	 		{{item?.comment}}
+	  	 		</ion-col>
+		 	</ion-row>
+	 	</ion-card>
+	 	<ion-card>
+		  	<ion-row>
+		  	 	<ion-col width-33><u>User</u></ion-col><ion-col width-67>
+		  	 		{{item?.user}}
+	  	 		</ion-col>
+		 	</ion-row>
+	 	</ion-card>
+	 	<ion-card>
+		  	<ion-row>
+		  	 	<ion-col width-33><u>Category</u></ion-col><ion-col width-67>
+		  	 		{{item?.category}}
+	  	 		</ion-col>
+		 	</ion-row>
+	 	</ion-card>
+	 	<ion-card>
+		  	<ion-row>
+		  	 	<ion-col width-33><u>Workflow</u></ion-col><ion-col width-67>
+		  	 		{{item?.workflow}}
+	  	 		</ion-col>
+		 	</ion-row>
+	 	</ion-card>
+	 	<ion-card>
+		  	<ion-row>
+		  	 	<ion-col width-33><u>Status</u></ion-col><ion-col width-67>
+		  	 		{{item?.status}}
+	  	 		</ion-col>
+		 	</ion-row>
+	 	</ion-card>
+    </ion-grid>
+</ion-content>
+
+
+<!-- <ion-content padding>
 	<ion-menu [content]="content">
 	  <ion-header>
 	    <ion-toolbar>
@@ -33,3 +82,4 @@
 	</ion-menu>
 	<ion-nav id="nav" #content [root]="ItemDetailPage"></ion-nav>
 </ion-content>
+ -->

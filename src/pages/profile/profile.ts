@@ -4,10 +4,10 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-profile',
+  templateUrl: 'profile.html'
 })
-export class ContactPage {
+export class ProfilePage {
 
 	public profile: any;
 
@@ -22,12 +22,12 @@ export class ContactPage {
    }
 
   	view_profile(){
-      this.http.get('http://localhost/dashboard/ionic_php/get_profile.php')
-      .subscribe(data =>
-      {
-        this.profile = data.json();
-        this.profile=this.profile[0];
-      });
+      	this.http.get('http://localhost/dashboard/ionic_php/get_profile.php')
+      	.subscribe(data =>
+      	{
+      	  	this.profile = data.json();
+      	  	this.profile=this.profile[0];
+      	});
    }
 
 }
