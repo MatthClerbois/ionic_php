@@ -6,67 +6,30 @@
 	</ion-header>
 	<ion-content padding>
 		<form [formGroup]="form" (ngSubmit)="saveEntry()">
-		<ion-grid text-center color="primary">
-			<ion-card>
-			  	<ion-row>
-			  	 	<ion-col width-33><h2><u>Subject</u></h2></ion-col><ion-col width-67>
-			  	 		<ion-textarea
-			  	 		   placeholder="{{item?.subject}}"
-			  	 		   formControlName="subject"
-						></ion-textarea>
-		  	 		</ion-col>
-			 	</ion-row>
-		 	</ion-card>
-		 	<ion-card>
-			  	<ion-row>
-			  	 	<ion-col width-33><h2><u>User</u></h2></ion-col><ion-col width-67>
-			  	 		<ion-textarea
-				  	 		   placeholder="{{item?.user}}"
-				  	 		   formControlName="user"
-							></ion-textarea>
-		  	 		</ion-col>
-			 	</ion-row>
-		 	</ion-card>
-		 	<ion-card>
-			  	<ion-row>
-			  	 	<ion-col width-33><h2><u>Category</u></h2></ion-col><ion-col width-67>
-			  	 		<ion-textarea
-			  	 		   placeholder="{{item?.category}}"
-			  	 		   formControlName="category"
-						></ion-textarea>
-		  	 		</ion-col>
-			 	</ion-row>
-		 	</ion-card>
-		 	<ion-card>
-			  	<ion-row>
-			  	 	<ion-col width-33><h2><u>Workflow</u></h2></ion-col><ion-col width-67>
-			  	 		<ion-textarea
-			  	 		   placeholder="{{item?.workflow}}"
-			  	 		   formControlName="workflow"
-						></ion-textarea>
-		  	 		</ion-col>
-			 	</ion-row>
-		 	</ion-card>
-		 	<ion-card>
-			  	<ion-row>
-			  	 	<ion-col width-33><h2><u>Status</u></h2></ion-col><ion-col width-67>
-			  	 		<ion-textarea
-			  	 		   placeholder="{{item?.status}}"
-			  	 		   formControlName="status"
-						></ion-textarea>
-		  	 		</ion-col>
-			 	</ion-row>
-		 	</ion-card>
-	 	 	<ion-card>
-	 		  	<ion-row>
-	 		  	 	<ion-col width-33><h2><u>Comment</u></h2></ion-col><ion-col width-67>
-	 		  	 		<ion-textarea
-	 		  	 		   	placeholder="{{item?.comment}}"
-	 		  	 		   	formControlName="comment"
-	 						rows="10"></ion-textarea>
-	 	  	 		</ion-col>
-	 		 	</ion-row>
-	 	 	</ion-card>
-	    </ion-grid>
+			<ion-item>
+		  	 	<ion-label fixed><h2>Subject</h2></ion-label>
+	  	 		<ion-input type="text"placeholder="{{item?.subject}}"></ion-input>
+  	 		</ion-item>
+	 			<ion-item>
+		  	 	<ion-label fixed><h2>User</h2></ion-label>
+	  	 		<ion-input type="text"placeholder="{{item?.user}}"></ion-input>
+  	 		</ion-item>
+	 			<ion-item>
+		  	 	<ion-label fixed><h2>Category</h2></ion-label>
+	  	 		<ion-input type="text"placeholder="{{item?.category}}"></ion-input>
+  	 		</ion-item>
+	 			<ion-item>
+		  	 	<ion-label fixed><h2>Workflow</h2></ion-label>
+	  	 		<ion-input type="text"placeholder="{{item?.workflow}}"></ion-input>
+  	 		</ion-item>
+				<ion-item>
+		  	 	<ion-label fixed><h2>Status</h2></ion-label>
+	  	 		<ion-input type="text"placeholder="{{item?.status}}"></ion-input>
+  	 		</ion-item>
+	 			<ion-item>
+		  	 		<ion-label fixed><h2>Comment</h2></ion-label>
+  	 			<ion-textarea placeholder="{{item?.comment}}"formControlName="comment"rows="3"></ion-textarea>
+  	 		</ion-item>
+	    	<button ion-button type="submit" block>Confirm</button>
 	    </form>
 	</ion-content>
