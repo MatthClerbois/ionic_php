@@ -20,9 +20,8 @@ export class ProfilePage {
 		 		private secureStorage: SecureStorage) {
 
   }
-
-   ionViewWillEnter()
-   {
+  	
+   ionViewWillEnter(){
       this.view_profile();
    }
 

@@ -1,11 +1,13 @@
-import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController,LoadingController  } from 'ionic-angular';
-import {TabsPage } from '../tabs/tabs';
-import {ProfilePage } from '../profile/profile';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import 'rxjs/add/operator/map';
+import { TabsPage } from '../tabs/tabs';
+import { ItemsPage } from '../items/items';
+import { ProfilePage } from '../profile/profile';
+import { Component,ViewChild } from '@angular/core';
+import { IonicStorageModule,Storage } from '@ionic/storage';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { IonicPage, NavController, NavParams,ToastController,LoadingController  } from 'ionic-angular';
 
 @Component({
 	selector: 'page-login',
@@ -16,18 +18,18 @@ export class LoginPage {
 	public form : FormGroup;
 	user : string='';
 	password : string='';
+	private user_id:number;
 	private url : string  = 'http://localhost/dashboard/ionic_php/login.php';
 	public user_info:any;
 
-	constructor( public navCtrl    : NavController,
-							 public http       : Http,
-							 public np         : NavParams,
-							 public fb         : FormBuilder,
-							 public loadingCtrl:LoadingController,
-							 public toastCtrl  : ToastController,
-							 private secureStorage: SecureStorage){
-
-		//this.test.loader.dismissAll();
+	constructor(public navCtrl   : NavController,
+				public storage	  : Storage,
+				public http       : Http,
+				public np         : NavParams,
+				public fb         : FormBuilder,
+				public loadingCtrl:LoadingController,
+				public toastCtrl  : ToastController,
+				private secureStorage: SecureStorage){
 		this.form = fb.group({
 					"user"                  : ["", Validators.required],
 					"password"           : ["", Validators.required]
@@ -40,8 +42,6 @@ export class LoginPage {
 	}
 
 	sendLogs(){
-		console.log(this.password);
-		console.log(this.user);
 		let loader = this.loadingCtrl.create({
 				content: "Logging in..."
 		});
@@ -55,21 +55,11 @@ export class LoginPage {
 			.subscribe((data) => {
 				this.user_info = data.json();
 				this.user_info=this.user_info[0];
-				console.log('user_info');
-				console.log(this.user_info);
-				if(this.user_info!==undefined){
-					loader.dismissAll();     	
-					this.navCtrl.setRoot(TabsPage);
+				if(this.user_info!==undefined){		
+					loader.dismissAll();   
+					this.navCtrl.setRoot(TabsPage,{'user':this.user_info});
 					this.sendNotification('Welcome '+this.user_info.firstname+' '+this.user_info.lastname+' !');
-
-					this.secureStorage.create('store_id')
-				    .then((storage: SecureStorageObject) => {				 
-				     	storage.set('user_id',this.user_info.ID)
-				     	  .then(
-				     	   data => console.log(data),
-				     	    error => console.log(error)
-				     	);
-				  	});
+			     	this.storage.set('user',this.user_info);
 				}else {
 					this.sendNotification('Wrong infos, try again.');
 					loader.dismissAll();     	
@@ -89,9 +79,10 @@ export class LoginPage {
 
  	sendNotification(message)  : void{
 		let notification = this.toastCtrl.create({
-				message       : message,
-				duration      : 2000
+				message     : message,
+				position	:'top',
+				duration	: 2000
 		});
 		notification.present();
- 	}
+ 	} 
 }

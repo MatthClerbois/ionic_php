@@ -1,7 +1,8 @@
 import 'rxjs/add/operator/map';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { ItemDetailPage } from '../item-detail/item-detail';
+import { NavController,NavParams } from 'ionic-angular';
+import { IonicStorageModule,Storage } from '@ionic/storage';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
@@ -13,18 +14,30 @@ export class ItemsPage {
 
 	public items: any=[];
 	public items_tmp: any=[];
-	public item_id:number;
+ 	private user_id:number =this.np.get('user_id');
 	private url : string  = 'http://localhost/dashboard/ionic_php/get_items.php';
 	 
 
   	constructor(	public navCtrl: NavController,
   					public http: Http,
-  					private secureStorage: SecureStorage) {
+					public storage	  : Storage,
+				 	public np         : NavParams,
+  					private secureStorage: SecureStorage) { 
+  		this.storage.get('user').then((val) => {
+		    console.log('val');
+		    console.log(val);
+		    this.user_id=val.ID;
+	  	}).then(()=>{
+		  	console.log(' HOME testvalue : ');
+		  	console.log(this.user_id); 
+	  	})
   	}
 
     ionViewWillEnter(){
         this.listItems();
+		console.log('ionViewDidLoad Mainsys');
     }
+
 
     initializeItems() {
        this.items =this.items_tmp;
@@ -42,9 +55,9 @@ export class ItemsPage {
    	    }
    	}
 
-  	listItems(){
-     
-     	let body     : string   = "key=login&item_id="+this.item_id,
+  	listItems(){ 		
+    	console.log('ITEMS user_id: '+this.user_id);
+     	let body     : string   = "key=login&user_id="+this.user_id,
      				type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
      				headers  : any      = new Headers({ 'Content-Type': type}),
      				options  : any      = new RequestOptions({ headers: headers });

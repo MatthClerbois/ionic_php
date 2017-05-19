@@ -18,10 +18,10 @@ export class UserPage {
 
    ionViewWillEnter()
    {
-      this.listItems();
+      this.listUsers();
    }
 
-  	listItems(){
+  	listUsers(){
       this.http.get('http://localhost/dashboard/ionic_php/get_users.php')
       .map(res => res.json())
       .subscribe(data =>
