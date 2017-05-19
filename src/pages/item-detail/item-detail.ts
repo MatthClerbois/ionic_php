@@ -14,9 +14,9 @@ export class ItemDetailPage {
 
 
 	public form : FormGroup;
-	public item : any=[];
- 	private url : string  = 'http://localhost/dashboard/ionic_php/get_item_detail.php';
- 	private item_id:number =this.navParams.get('item_id');
+ 	private url : string  = 'http://localhost/dashboard/ionic_php/';
+ 	private item:any =this.navParams.get('item');
+ 	public statusList:any=[];
  	public loader = this.loadingCtrl.create({
 				content: "Logging in..."
 		});
@@ -28,6 +28,8 @@ export class ItemDetailPage {
   					public navParams: NavParams,
                		public fb         : FormBuilder,
 					private secureStorage: SecureStorage) {
+    	this.getItemInfo();
+    	this.getStatusList();
 		this.helpNotification('Click on Grey text (right side) to modify Values');
 		this.form = fb.group({
 		   "subject"                  	: ["", Validators.required],
@@ -41,18 +43,7 @@ export class ItemDetailPage {
   
     ionViewDidLoad() {
       	console.log('ItemDetail loaded');
-	    let body     : string   = "key=item_detail&item_id=" + this.item_id,
-	    			type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
-	    			headers  : any      = new Headers({ 'Content-Type': type}),
-	    			options  : any      = new RequestOptions({ headers: headers });
-	    this.http.post(this.url, body, options)
-	    	.subscribe((data) => {
-	    		this.item = data.json();
-	    		this.item=this.item[0];
-	    		console.log(this.item);
-	    		this.loader.dismissAll();     	
-	    		this.sendNotification('Selected item n°'+this.item.ID);
-	    });
+	    
     }
   
     openPage(page){
@@ -65,6 +56,36 @@ export class ItemDetailPage {
 				duration      : 2000,
 		});
 		notification.present();
+ 	}
+ 	getStatusList(){
+ 		let body     : string   = "key=status_id&status_id=" + this.item.status_id,
+ 					type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+ 					headers  : any      = new Headers({ 'Content-Type': type}),
+ 					options  : any      = new RequestOptions({ headers: headers });
+ 		this.http.post(this.url+'get_status_list.php', body, options)
+      	.map(res => res.json())
+      	.subscribe(data =>{
+ 				this.statusList = data;
+ 				console.log('statusList');
+ 				console.log(this.statusList);
+ 				this.loader.dismissAll();     	
+ 		});
+ 	}
+
+ 	getItemInfo(){
+ 		let body     : string   = "key=item_detail&item_id=" + this.item.ID,
+ 					type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+ 					headers  : any      = new Headers({ 'Content-Type': type}),
+ 					options  : any      = new RequestOptions({ headers: headers });
+ 		this.http.post(this.url+'get_item_detail.php', body, options)
+ 			.subscribe((data) => {
+ 				this.item = data.json();
+ 				this.item=this.item[0];
+ 				this.loader.dismissAll();     	
+ 				console.log('this.item');
+ 				console.log(this.item);
+ 				this.sendNotification('Selected item n°'+this.item.ID);
+ 		});
  	}
 
  	helpNotification(message): void{

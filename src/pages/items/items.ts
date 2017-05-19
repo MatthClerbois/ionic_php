@@ -14,8 +14,8 @@ export class ItemsPage {
 
 	public items: any=[];
 	public items_tmp: any=[];
- 	private user_id:number =this.np.get('user_id');
-	private url : string  = 'http://localhost/dashboard/ionic_php/get_items.php';
+ 	public user_id:number =this.np.get('user_id');
+	public url : string  = 'http://localhost/dashboard/ionic_php/get_items.php';
 	 
 
   	constructor(	public navCtrl: NavController,
@@ -71,8 +71,8 @@ export class ItemsPage {
       	});
     }
 
-    itemInfo(item_id){
-	  	let payload={'item_id' :item_id};
+    itemInfo(item){
+	  	let payload={'item' :item};
 	  	this.navCtrl.push(ItemDetailPage, payload)
     }
 

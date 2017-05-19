@@ -12,7 +12,7 @@
 <ion-content padding>
 		<h1 text-center><u>Subject</u></h1>
     	<ion-item *ngFor="let item of items">    		 
-			<button ion-button block outline round (click)=itemInfo(item.ID)>
+			<button ion-button block outline round (click)=itemInfo(item)>
 			  <h2>{{ item.subject }}</h2>
 			</button>
     	</ion-item>	

@@ -10,25 +10,27 @@
 		  	 	<ion-label fixed><h2>Subject</h2></ion-label>
 	  	 		<ion-input type="text"placeholder="{{item?.subject}}"></ion-input>
   	 		</ion-item>
-	 			<ion-item>
+ 			<ion-item>
 		  	 	<ion-label fixed><h2>User</h2></ion-label>
 	  	 		<ion-input type="text"placeholder="{{item?.user}}"></ion-input>
   	 		</ion-item>
-	 			<ion-item>
+ 			<ion-item>
 		  	 	<ion-label fixed><h2>Category</h2></ion-label>
 	  	 		<ion-input type="text"placeholder="{{item?.category}}"></ion-input>
   	 		</ion-item>
-	 			<ion-item>
+ 			<ion-item>
 		  	 	<ion-label fixed><h2>Workflow</h2></ion-label>
 	  	 		<ion-input type="text"placeholder="{{item?.workflow}}"></ion-input>
   	 		</ion-item>
-				<ion-item>
+			<ion-item>
 		  	 	<ion-label fixed><h2>Status</h2></ion-label>
-	  	 		<ion-input type="text"placeholder="{{item?.status}}"></ion-input>
+	  	 			<ion-select>
+						<ion-option value="{{ status.ID }}" *ngFor="let status of statusList">{{ status.definition }}</ion-option>
+					</ion-select>
   	 		</ion-item>
-	 			<ion-item>
-		  	 		<ion-label fixed><h2>Comment</h2></ion-label>
-  	 			<ion-textarea placeholder="{{item?.comment}}"formControlName="comment"rows="3"></ion-textarea>
+ 			<ion-item>
+	  	 		<ion-label fixed><h2>Comment</h2></ion-label>
+ 				<ion-textarea placeholder="{{item?.comment}}"formControlName="comment"rows="3"></ion-textarea>
   	 		</ion-item>
 	    	<button ion-button type="submit" block>Confirm</button>
 	    </form>
