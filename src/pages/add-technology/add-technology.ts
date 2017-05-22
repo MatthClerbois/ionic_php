@@ -24,7 +24,7 @@ export class AddTechnology {
    public pageTitle              : string;
    // Property to store the recordID for when an existing entry is being edited
    public recordID               : any      = null;
-   private baseURI               : string  = 'http://localhost/dashboard/ionic_php/';
+   private baseURI               : string  = 'http://localhost:8080/ionic_php/';
 
    // Initialise module classes
    constructor(public navCtrl    : NavController,

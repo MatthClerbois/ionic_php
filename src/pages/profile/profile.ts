@@ -26,7 +26,7 @@ export class ProfilePage {
    }
 
   	view_profile(){
-      	this.http.get('http://localhost/dashboard/ionic_php/get_profile.php')
+      	this.http.get('http://localhost:8080/ionic_php/get_profile.php')
       	.subscribe(data =>
       	{
       	  	this.profile = data.json();

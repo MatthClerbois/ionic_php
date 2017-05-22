@@ -19,7 +19,7 @@ export class LoginPage {
 	user : string='';
 	password : string='';
 	private user_id:number;
-	private url : string  = 'http://localhost/dashboard/ionic_php/login.php';
+	private url : string  = 'http://localhost:8080/ionic_php/login.php';
 	public user_info:any;
 
 	constructor(public navCtrl   : NavController,

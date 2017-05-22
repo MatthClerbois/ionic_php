@@ -26,7 +26,7 @@ export class HomePage {
    // Using Angular's Http class and an Observable  then
    // assign this to the items array for rendering to the HTML template
    load(){
-      this.http.get('http://localhost/dashboard/ionic_php/retrieve-data.php')
+      this.http.get('http://localhost:8080/ionic_php/retrieve-data.php')
       .map(res => res.json())
       .subscribe(data =>
       {

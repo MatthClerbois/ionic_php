@@ -14,11 +14,11 @@ export class ItemDetailPage {
 
 
 	public form : FormGroup;
- 	private url : string  = 'http://localhost/dashboard/ionic_php/';
+ 	private url : string  = 'http://localhost:8080/ionic_php/';
  	private item:any =this.navParams.get('item');
  	public statusList:any=[];
  	public loader = this.loadingCtrl.create({
-				content: "Logging in..."
+				content: "Accessing Item's detail ..."
 		});
 
     constructor(	public navCtrl: NavController,

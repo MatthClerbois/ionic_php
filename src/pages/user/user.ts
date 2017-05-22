@@ -22,7 +22,7 @@ export class UserPage {
    }
 
   	listUsers(){
-      this.http.get('http://localhost/dashboard/ionic_php/get_users.php')
+      this.http.get('http://localhost:8080/ionic_php/get_users.php')
       .map(res => res.json())
       .subscribe(data =>
       {

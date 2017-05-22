@@ -15,7 +15,7 @@ export class ItemsPage {
 	public items: any=[];
 	public items_tmp: any=[];
  	public user_id:number =this.np.get('user_id');
-	public url : string  = 'http://localhost/dashboard/ionic_php/get_items.php';
+	public url : string  = 'http:///localhost:8080/ionic_php/get_items.php';
 	 
 
   	constructor(	public navCtrl: NavController,
