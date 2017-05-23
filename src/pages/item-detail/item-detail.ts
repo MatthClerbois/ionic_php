@@ -58,11 +58,12 @@ export class ItemDetailPage {
 		notification.present();
  	}
  	getStatusList(){
+ 		console.log('status: '+this.item.status_id);
  		let body     : string   = "key=status_id&status_id=" + this.item.status_id,
  					type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
  					headers  : any      = new Headers({ 'Content-Type': type}),
  					options  : any      = new RequestOptions({ headers: headers });
- 		this.http.post(this.url+'get_status_list.php', body, options)
+ 		this.http.post(this.url+'get_item_status.php', body, options)
       	.map(res => res.json())
       	.subscribe(data =>{
  				this.statusList = data;
