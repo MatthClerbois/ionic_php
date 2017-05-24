@@ -8,6 +8,7 @@ import { LoginPage } from '../pages/login/login';
 import { HttpModule } from '@angular/http';
 import { ProfilePage } from '../pages/profile/profile';
 import { MainsysPage } from '../pages/mainsys/mainsys';
+import { MenuItemPage } from '../pages/menu-item/menu-item';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserModule } from '@angular/platform-browser';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
@@ -28,6 +29,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     ItemHistoryPage,
     HomePage,
     ItemDetailPage,
+    MenuItemPage,
     MainsysPage,
     LoginPage
   ],
@@ -45,6 +47,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     HomePage,
     ItemHistoryPage,
     ItemDetailPage,
+    MenuItemPage,
     TabsPage,
     UserPage,
     MainsysPage,
