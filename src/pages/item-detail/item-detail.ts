@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ToastController,LoadingController  } from 'ionic-angular';
+import { SecureStorage } from '@ionic-native/secure-storage';
+import { ItemNotesPage } from '../item-notes/item-notes';
 import { Http,Headers, RequestOptions } from '@angular/http';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
-import { LoginPage } from '../../login/login';
-import { ItemsPage } from '../../items/items';
+import { NavController, NavParams,ToastController,LoadingController  } from 'ionic-angular';
 
 @Component({
   selector: 'page-item-detail',
@@ -87,6 +86,12 @@ export class ItemDetailPage {
  				console.log(this.item);
  				this.sendNotification('Selected item n°'+this.item.ID);
  		});
+ 	}
+
+ 	getNotes(){ 		
+ 		console.log('item_id from item_details: '+this.item.ID);
+	  	let payload={'item_id' :this.item.ID};
+	  	this.navCtrl.push(ItemNotesPage, payload)
  	}
 
  	helpNotification(message): void{

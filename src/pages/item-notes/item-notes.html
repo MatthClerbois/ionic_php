@@ -1,0 +1,25 @@
+<!--
+  Generated template for the ItemNotesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ItemNotes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngIf="notes.length>0;else empty">
+		<h1 text-center><u>Click for more info</u></h1>
+		<ion-item *ngFor="let note of notes"> 		
+	    	<p>{{ note?.note }}</p>
+			<button ion-button (click)=moreInfo(note)>	</button>
+		</ion-item>	
+	</div>
+	<ng-template #empty><h1>This Items has no notes yet</h1></ng-template>
+</ion-content>

@@ -2,7 +2,6 @@ import { UserPage } from '../user/user';
 import { HomePage } from '../home/home';
 import { Component } from '@angular/core';
 import { ItemsPage } from '../items/items';
-import { MenuItemPage } from '../menu-item/menu-item';
 import { MainsysPage } from '../mainsys/mainsys';
 import { ProfilePage } from '../profile/profile';
 import { NavParams,NavController  } from 'ionic-angular';
@@ -20,7 +19,6 @@ export class TabsPage {
   	tab3Root = UserPage;
   	tab4Root = MainsysPage;
     tab5Root = ItemsPage;
-  	tab6Root = MenuItemPage;
 	
   	constructor(public navParams	: NavParams,
   				public navCtrl    	: NavController){

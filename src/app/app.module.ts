@@ -8,28 +8,26 @@ import { LoginPage } from '../pages/login/login';
 import { HttpModule } from '@angular/http';
 import { ProfilePage } from '../pages/profile/profile';
 import { MainsysPage } from '../pages/mainsys/mainsys';
-import { MenuItemPage } from '../pages/menu-item/menu-item';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserModule } from '@angular/platform-browser';
+import { ItemNotesPage } from '../pages/item-notes/item-notes';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
-import { ItemHistoryPage } from '../pages/item-history/item-history';
 import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { SecureStorage } from '@ionic-native/secure-storage';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 
 @NgModule({
   declarations: [
     MyApp,
-    ItemsPage,
     ProfilePage,
     TabsPage,
     UserPage,
-    ItemHistoryPage,
     HomePage,
+    ItemsPage,
+    ItemNotesPage,
     ItemDetailPage,
-    MenuItemPage,
     MainsysPage,
     LoginPage
   ],
@@ -45,9 +43,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     ItemsPage,
     ProfilePage,
     HomePage,
-    ItemHistoryPage,
+    ItemNotesPage,
     ItemDetailPage,
-    MenuItemPage,
     TabsPage,
     UserPage,
     MainsysPage,
