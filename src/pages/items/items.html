@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Items
+      Subject Items
     </ion-title>
     <ion-searchbar (ionInput)="getItems($event)">
     	
@@ -10,10 +10,9 @@
 </ion-header>
 
 <ion-content padding>
-		<h1 text-center><u>Subject</u></h1>
-    	<ion-item *ngFor="let item of items">    		 
-			<button ion-button block outline round (click)=itemInfo(item)>
+    <ion-list inset>
+			<button ion-item *ngFor="let item of items" (click)=itemInfo(item)>
 			  <h2>{{ item.subject }}</h2>
 			</button>
-    	</ion-item>	
+    </ion-list>
 </ion-content>

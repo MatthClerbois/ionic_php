@@ -15,10 +15,11 @@
 
 <ion-content padding>
 	<div *ngIf="notes.length>0;else empty">
-		<h1 text-center><u>Click for more info</u></h1>
+		<h3 text-center color="primary"><u>Click on <ion-icon name="information-circle"></ion-icon> for more info</u></h3>
 		<ion-item *ngFor="let note of notes"> 		
-	    	<p>{{ note?.note }}</p>
-			<button ion-button (click)=moreInfo(note)>	</button>
+	    	<p><button ion-button clear (click)=moreInfo(note)><ion-icon name="information-circle"></ion-icon></button>
+	    		{{ note?.note }}
+			</p>
 		</ion-item>	
 	</div>
 	<ng-template #empty><h1>This Items has no notes yet</h1></ng-template>
