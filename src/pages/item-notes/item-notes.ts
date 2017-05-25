@@ -24,7 +24,7 @@ export class ItemNotesPage {
     
     ionViewWillEnter(){
         this.loadNotes();
-		console.log('ionViewDidLoad Mainsys');
+		console.log('ionViewDidLoad NotePage');
 
     }
     loadNotes(){    	
@@ -38,14 +38,6 @@ export class ItemNotesPage {
       	.subscribe(data =>
       	{
       	   	this.notes = data;
-	      	if(this.notes.length>0){
-		      	console.log('notes not null');
-		      	console.log(this.notes);
-
-	      	}else {
-		      	console.log('notes null');
-		      	console.log(this.notes);
-	  		}
       	});
     }
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HistoryPage } from '../history/history';
 import { SecureStorage } from '@ionic-native/secure-storage';
 import { ItemNotesPage } from '../item-notes/item-notes';
 import { Http,Headers, RequestOptions } from '@angular/http';
@@ -92,6 +93,12 @@ export class ItemDetailPage {
  		console.log('item_id from item_details: '+this.item.ID);
 	  	let payload={'item_id' :this.item.ID};
 	  	this.navCtrl.push(ItemNotesPage, payload)
+ 	}
+
+ 	getHistory(){ 		
+ 		console.log('item_id from item_details: '+this.item.ID);
+	  	let payload={'item_id' :this.item.ID};
+	  	this.navCtrl.push(HistoryPage, payload)
  	}
 
  	helpNotification(message): void{

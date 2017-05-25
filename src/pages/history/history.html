@@ -1,0 +1,47 @@
+<!--
+  Generated template for the ItemNotesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>History</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngIf="historys.length>0;else empty">
+		<ion-card>
+			<ion-card-header>
+				Informations of item are displayed <br/>following this template
+			</ion-card-header>
+			<ion-item-group>
+		    	<ion-item-divider>"Date Of Modification"</ion-item-divider>
+		    	<ion-item>"workflow"</ion-item>
+		    	<ion-item>"user that modified"</ion-item>
+		    	<ion-item>"status"</ion-item>
+		    	<ion-item>"category"</ion-item>
+		    	<ion-item>"subject"</ion-item>
+		    	<ion-item>"comment"</ion-item>
+			</ion-item-group>
+		</ion-card>
+	    <ion-list>
+			<ion-card ion-item *ngFor="let history of historys">
+				<ion-item-group>
+			    	<ion-item-divider>{{history?.date_modif|date:"EEEE, dd/MM/yy HH:mm"}}</ion-item-divider>
+			    	<ion-item>{{history?.workflow}}</ion-item>
+			    	<ion-item>{{history?.user}}</ion-item>
+			    	<ion-item>{{history?.status}}</ion-item>
+			    	<ion-item>{{history?.category}}</ion-item>
+			    	<ion-item>{{history?.subject}}</ion-item>
+			    	<ion-item>{{history?.comment}}</ion-item>
+				</ion-item-group>
+    		</ion-card>
+   		</ion-list>
+	</div>
+	<ng-template #empty><h1>This Items has not been modified yet</h1></ng-template>
+</ion-content>

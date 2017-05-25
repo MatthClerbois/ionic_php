@@ -6,6 +6,7 @@ import { ItemsPage } from '../pages/items/items';
 import { StatusBar } from '@ionic-native/status-bar';
 import { LoginPage } from '../pages/login/login';
 import { HttpModule } from '@angular/http';
+import { HistoryPage } from '../pages/history/history';
 import { ProfilePage } from '../pages/profile/profile';
 import { MainsysPage } from '../pages/mainsys/mainsys';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,6 +26,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     TabsPage,
     UserPage,
     HomePage,
+    HistoryPage,
     ItemsPage,
     ItemNotesPage,
     ItemDetailPage,
@@ -43,6 +45,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     ItemsPage,
     ProfilePage,
     HomePage,
+    HistoryPage,
     ItemNotesPage,
     ItemDetailPage,
     TabsPage,
