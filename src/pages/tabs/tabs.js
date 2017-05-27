@@ -14,8 +14,9 @@ import { UserPage } from '../user/user';
 import { MainsysPage } from '../mainsys/mainsys';
 var TabsPage = (function () {
     function TabsPage() {
+        this.tab1Root = ProfilePage;
         this.tab2Root = ItemsPage;
-        this.tab3Root = ProfilePage;
+        this.tab3Root = LastItemPage;
         this.tab4Root = UserPage;
         this.tab5Root = MainsysPage;
     }

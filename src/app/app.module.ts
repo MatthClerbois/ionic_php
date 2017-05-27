@@ -1,6 +1,5 @@
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home';
 import { UserPage } from '../pages/user/user';
 import { ItemsPage } from '../pages/items/items';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -10,12 +9,14 @@ import { HistoryPage } from '../pages/history/history';
 import { ProfilePage } from '../pages/profile/profile';
 import { MainsysPage } from '../pages/mainsys/mainsys';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LastItemPage } from '../pages/last-item/last-item';
+import { LastModifiedPage } from '../pages/last-modified/last-modified';
+import { SecureStorage } from '@ionic-native/secure-storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { ItemNotesPage } from '../pages/item-notes/item-notes';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { SecureStorage } from '@ionic-native/secure-storage';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 
@@ -25,11 +26,12 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     ProfilePage,
     TabsPage,
     UserPage,
-    HomePage,
     HistoryPage,
     ItemsPage,
+    LastModifiedPage,
     ItemNotesPage,
     ItemDetailPage,
+    LastItemPage,
     MainsysPage,
     LoginPage
   ],
@@ -44,8 +46,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     MyApp,
     ItemsPage,
     ProfilePage,
-    HomePage,
+    LastItemPage,
     HistoryPage,
+    LastModifiedPage,
     ItemNotesPage,
     ItemDetailPage,
     TabsPage,
