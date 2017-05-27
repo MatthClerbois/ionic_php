@@ -1,10 +1,10 @@
 import 'rxjs/add/operator/map';
 import { Component } from '@angular/core';
 import { ItemDetailPage } from '../item-detail/item-detail';
-import { NavController,NavParams } from 'ionic-angular';
 import { IonicStorageModule,Storage } from '@ionic/storage';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { NavController,NavParams,ToastController,LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-last-item',
