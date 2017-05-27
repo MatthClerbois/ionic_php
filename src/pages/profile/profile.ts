@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { NavController,LoadingController } from 'ionic-angular';
-import { Http } from '@angular/http';
-import { LoginPage } from '../login/login';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import 'rxjs/add/operator/map';
+import { LoginPage } from '../login/login';
+import { Component } from '@angular/core';
+import { IonicStorageModule,Storage } from '@ionic/storage';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { NavController,NavParams,LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-profile',
@@ -12,27 +13,44 @@ import 'rxjs/add/operator/map';
 export class ProfilePage {
 
 	public profile: any;
-	public loader = this.loadingCtrl.create({content: "Logging out..."});
+	public loader = this.loadingCtrl.create({content: "Logging out..."});  
+  	public user_id:number =this.np.get('user_id');
+  	public url : string  = 'http:///localhost:8080/ionic_php/get_profile.php';
 
   constructor(	public navCtrl: NavController,
   				public http: Http,
-			 	public loadingCtrl:LoadingController,
-		 		private secureStorage: SecureStorage) {
-
+          		public storage    : Storage,
+          		public np         : NavParams,
+  			 	public loadingCtrl:LoadingController,
+  		 		private secureStorage: SecureStorage) {
+  		this.storage.get('user').then((val) => {
+		    console.log('val');
+		    console.log(val);
+		    this.user_id=val.ID;
+	  	}).then(()=>{
+		  	console.log(' profile testvalue : ');
+		  	console.log(this.user_id); 
+	  	})
   }
   	
    ionViewWillEnter(){
       this.view_profile();
    }
 
-  	view_profile(){
-      	this.http.get('http://localhost:8080/ionic_php/get_profile.php')
-      	.subscribe(data =>
-      	{
-      	  	this.profile = data.json();
-      	  	this.profile=this.profile[0];
-      	});
-   }
+  	view_profile(){    
+      console.log('ITEMS user_id: '+this.user_id);
+       let body     : string   = "key=profile&user_id="+this.user_id,
+             type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+             headers  : any      = new Headers({ 'Content-Type': type}),
+             options  : any      = new RequestOptions({ headers: headers });
+
+       this.http.post(this.url, body, options)
+        .subscribe(data =>
+        {
+            this.profile = data.json();
+            this.profile=this.profile[0];
+        });
+    }
 
    logout(){
 		this.loader.present();
@@ -44,5 +62,4 @@ export class ProfilePage {
 			this.loader.dismissAll();
 		});
    }
-
 }

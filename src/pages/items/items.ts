@@ -1,8 +1,7 @@
 import 'rxjs/add/operator/map';
 import { Component } from '@angular/core';
 import { ItemDetailPage } from '../item-detail/item-detail';
-import { IonicStorageModule,Storage } from '@ionic/storage';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { IonicStorageModule,Storage } from '@ionic/storage'; 
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { NavController,NavParams,ToastController,LoadingController } from 'ionic-angular';
 
