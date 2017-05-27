@@ -13,25 +13,42 @@ import { NavController,NavParams,ToastController,LoadingController } from 'ionic
 export class LastItemPage {
 
 	public lastItems: any=[];
+	public lastItems_tmp: any=[];
  	public user_id:number =this.np.get('user_id');
 	public url : string  = 'http:///localhost:8080/ionic_php/get_last_item.php';
 
-  constructor(	public navCtrl: NavController,
-				public http: Http,
-				public storage	  : Storage,
-				public np         : NavParams,
-				private secureStorage: SecureStorage) {
-  		this.storage.get('user').then((val) => {
-		    this.user_id=val.ID;
-	  	}).then(()=>{
-		  	console.log(' last_item testvalue : ');
-		  	console.log(this.user_id); 
-	  	})
-  }
+	  constructor(	public navCtrl: NavController,
+					public http: Http,
+					public storage	  : Storage,
+					public np         : NavParams,
+					private secureStorage: SecureStorage) {
+	  		this.storage.get('user').then((val) => {
+			    this.user_id=val.ID;
+		  	}).then(()=>{
+			  	console.log(' last_item testvalue : ');
+			  	console.log(this.user_id); 
+		  	})
+	  }
     ionViewWillEnter(){
         this.getLastItem();
 		console.log('');
     }    
+
+
+    initializeItems() {
+       this.lastItems =this.lastItems_tmp;
+     }
+
+   	searchItems(ev: any) {
+   		this.initializeItems();
+   	    let val = ev.target.value;
+
+   	    if (val && val.trim() != '') {
+   	      	this.lastItems = this.lastItems.filter((lastItem) => {
+				return (lastItem.subject.toLowerCase().indexOf(val.toLowerCase()) > -1);
+			})
+   	    }
+   	}
 
   	getLastItem(){ 		
     	console.log('ITEMS user_id: '+this.user_id);
@@ -45,6 +62,7 @@ export class LastItemPage {
       	.subscribe(data =>
       	{
       	   this.lastItems = data;
+      	   this.lastItems_tmp = data;
       	});
     }
 

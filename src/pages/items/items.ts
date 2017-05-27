@@ -44,7 +44,7 @@ export class ItemsPage {
      }
 
 
-   	getItems(ev: any) {
+   	searchItems(ev: any) {
    		this.initializeItems();
    	    let val = ev.target.value;
 

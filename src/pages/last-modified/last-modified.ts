@@ -13,6 +13,7 @@ import { NavController,NavParams ,ToastController,LoadingController} from 'ionic
 export class LastModifiedPage {
 
 	public lastModified: any=[];
+	public lastModified_tmp: any=[];
  	public user_id:number =this.np.get('user_id');
 	public url : string  = 'http:///localhost:8080/ionic_php/get_last_modified.php';
 
@@ -22,7 +23,7 @@ export class LastModifiedPage {
 				public storage	  : Storage,
 				public np         : NavParams,
 				private secureStorage: SecureStorage) {
-  	
+
   		this.storage.get('user').then((val) => {
 		    this.user_id=val.ID;
 	  	}).then(()=>{
@@ -31,11 +32,28 @@ export class LastModifiedPage {
 	  	})
   }
 
+    initializeItems() {
+       this.lastModified =this.lastModified_tmp;
+     }
+
 
     ionViewWillEnter(){
         this.getLastItem();
 		console.log('');
     }    
+
+
+   	searchItems(ev: any) {
+   		this.initializeItems();
+   	    let val = ev.target.value;
+
+   	    if (val && val.trim() != '') {
+   	      	this.lastModified = this.lastModified.filter((lastModif) => {
+				return (lastModif.subject.toLowerCase().indexOf(val.toLowerCase()) > -1);
+			})
+   	    }
+   	}
+
 
   	getLastItem(){ 		
     	console.log('ITEMS user_id: '+this.user_id);
@@ -49,6 +67,7 @@ export class LastModifiedPage {
       	.subscribe(data =>
       	{
       	   this.lastModified = data;
+      	   this.lastModified_tmp = data;
       	});
     }
 }
