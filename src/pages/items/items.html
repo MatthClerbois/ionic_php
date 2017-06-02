@@ -11,8 +11,10 @@
 
 <ion-content padding>
     <ion-list inset>
-			<button ion-item *ngFor="let item of items" (click)=itemInfo(item)>
-			  <h2>{{ item.subject }}</h2>
-			</button>
+      <button ion-item *ngFor="let item of items" (click)=itemInfo(item)>
+        <div text-center>
+    			  <h2>{{ item.subject }}</h2>
+        </div>
+      </button>
     </ion-list>
 </ion-content>

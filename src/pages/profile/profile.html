@@ -7,8 +7,7 @@
 </ion-header>
 
 <ion-content>
-	<ion-card>
-		<img  class="displayed"  height="250 px" width="150 px" src="images/moyai.png">
+		<img  class="displayed"  height="270 px" width="150 px" src="images/moyai.png">
 		<ion-card-content>
 			<h1>firstname : {{profile?.firstname}} </h1>
 			<h1>lastname : {{profile?.lastname}}</h1><br/>
@@ -17,9 +16,10 @@
 			password : {{profile?.password}} <br/>
 			date_creation : {{profile?.date_creation|date:"dd/MM/yy"}} <br/>
 		</ion-card-content>
-	</ion-card>
-		<button ion-button end round outline color="danger" (click)=logout()>
-			Logout -  
-			<ion-icon name="md-exit" item-right></ion-icon>
-     	</button>
+		<div text-center>
+			<button ion-button end outline color="danger" (click)=logout()>
+				Logout -  
+				<ion-icon name="md-exit" item-right></ion-icon>
+	     	</button>
+     	</div>
 </ion-content>
