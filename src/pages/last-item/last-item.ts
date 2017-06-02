@@ -49,6 +49,21 @@ export class LastItemPage {
 			})
    	    }
    	}
+     
+    toggleNotification(e){    
+       let body     : string   = "key=lastItemRange&days="+e._value+ "&user_id="+this.user_id,
+         type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+         headers  : any      = new Headers({ 'Content-Type': type}),
+         options  : any      = new RequestOptions({ headers: headers });
+
+       this.http.post(this.url, body, options)
+        .map(res => res.json())
+        .subscribe(data =>
+        {
+           this.lastItems = data;
+           this.lastItems_tmp = data;
+        });
+    }
 
   	getLastItem(){ 		
     	console.log('ITEMS user_id: '+this.user_id);

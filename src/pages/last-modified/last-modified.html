@@ -4,7 +4,15 @@
       Last modified items
     </ion-title>
     <ion-item>
-        <ion-range pin="true" snaps="true" min="1" max="15" step="2" [(ngModel)]="brightness">
+        <ion-range 
+                pin="true" 
+                snaps="true" 
+                min="1" 
+                max="15" 
+                step="2" 
+                debounce="300"
+                (ionChange)="toggleNotification($event)" 
+                [(ngModel)]="singleValue">
           <ion-label range-left>1 day</ion-label>
           <ion-label range-right>15 Days</ion-label>
         </ion-range>
@@ -15,8 +23,11 @@
 
 <ion-content padding>    
     <ion-list inset>
+        <div *ngIf="lastModified.length>0;else empty">
 			<button ion-item *ngFor="let item of lastModified">
-			  <h2>{{ item.subject }}</h2>
-			</button>
+			  <h2>{{ item?.subject }}</h2>
+			</button>            
+        </div>
+    <ng-template #empty><h1>No items to show</h1></ng-template>
     </ion-list>
 </ion-content>

@@ -18,7 +18,7 @@ export class LastModifiedPage {
 	public url : string  = 'http:///localhost:8080/ionic_php/get_last_modified.php';
 
 
-  constructor(public navCtrl: NavController,
+    constructor(public navCtrl: NavController,
 				public http: Http,
 				public storage	  : Storage,
 				public np         : NavParams,
@@ -30,18 +30,31 @@ export class LastModifiedPage {
 		  	console.log(' last_item testvalue : ');
 		  	console.log(this.user_id); 
 	  	})
-  }
+    }
 
     initializeItems() {
        this.lastModified =this.lastModified_tmp;
-     }
+    }
 
 
     ionViewWillEnter(){
-        this.getLastItem();
-		console.log('');
+          this.getLastItem();
     }    
 
+    toggleNotification(e){    
+       let body     : string   = "key=lastModifRange&days="+e._value+ "&user_id="+this.user_id,
+         type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+         headers  : any      = new Headers({ 'Content-Type': type}),
+         options  : any      = new RequestOptions({ headers: headers });
+
+       this.http.post(this.url, body, options)
+        .map(res => res.json())
+        .subscribe(data =>
+        {
+           this.lastModified = data;
+           this.lastModified_tmp = data;
+        });
+    }
 
    	searchItems(ev: any) {
    		this.initializeItems();
