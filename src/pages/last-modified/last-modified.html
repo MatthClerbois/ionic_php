@@ -1,15 +1,19 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Last modified items (24h)
+      Last modified items
     </ion-title>
+    <ion-item>
+        <ion-range pin="true" snaps="true" min="1" max="15" step="2" [(ngModel)]="brightness">
+          <ion-label range-left>1 day</ion-label>
+          <ion-label range-right>15 Days</ion-label>
+        </ion-range>
+    </ion-item>
   </ion-navbar>
-    <ion-searchbar (ionInput)="searchItems($event)">
-    	
-    </ion-searchbar>
+    <ion-searchbar (ionInput)="searchItems($event)"></ion-searchbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding>    
     <ion-list inset>
 			<button ion-item *ngFor="let item of lastModified">
 			  <h2>{{ item.subject }}</h2>
