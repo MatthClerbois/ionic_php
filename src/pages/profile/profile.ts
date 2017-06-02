@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { IonicStorageModule,Storage } from '@ionic/storage';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
-import { NavController,NavParams,LoadingController } from 'ionic-angular';
+import { App,NavController,NavParams,LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-profile',
@@ -18,6 +18,7 @@ export class ProfilePage {
 
   constructor(	public navCtrl: NavController,
   				public http: Http,
+                public app : App,
           		public storage    : Storage,
           		public np         : NavParams,
   			 	public loadingCtrl:LoadingController,
@@ -28,13 +29,14 @@ export class ProfilePage {
   }
   	
    logout(){
-		this.loader.present();
-		this.secureStorage.create('store_id')
-	    .then((storage: SecureStorageObject) => {				 
-	     	storage.clear();
-	  	});
-    	this.navCtrl.setRoot(LoginPage).then(response=>{
-			this.loader.dismissAll();
-		});
+
+        this.loader.present();
+        this.secureStorage.create('store_id')
+        .then((storage: SecureStorageObject) => {                 
+             storage.clear();
+          });
+        this.app.getRootNav().setRoot(LoginPage).then(response=>{
+            this.loader.dismissAll();
+        });
    }
 }

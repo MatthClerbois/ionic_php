@@ -34,11 +34,11 @@ export class LoginPage {
 					"user"                  : ["", Validators.required],
 					"password"           : ["", Validators.required]
 		});
+		//this.tabBarElement = document.querySelector('#tabs ion-tabbar-section');
 	}
 
-
 	ionViewWillEnter(){
-		 this.resetFields();
+	 	this.resetFields();
 	}
 
 	sendLogs(){
