@@ -33,7 +33,11 @@ export class LastItemPage {
         this.getLastItem();
 		console.log('');
     }    
-
+    
+    itemInfo(item){
+      let payload={'item' :item};
+      this.navCtrl.push(ItemDetailPage, payload)
+    }
 
     initializeItems() {
        this.lastItems =this.lastItems_tmp;

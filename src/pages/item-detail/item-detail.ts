@@ -30,7 +30,7 @@ export class ItemDetailPage {
 					private secureStorage: SecureStorage) {
     	this.getItemInfo();
     	this.getStatusList();
-		this.helpNotification('Click on Grey text (right side) to modify Values');
+		//this.helpNotification('Click on Grey text (right side) to modify Values');
 		this.form = fb.group({
 		   "subject"                  	: ["", Validators.required],
 		   "comment"                  	: ["", Validators.required],

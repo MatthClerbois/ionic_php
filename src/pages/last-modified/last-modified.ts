@@ -66,7 +66,11 @@ export class LastModifiedPage {
 			})
    	    }
    	}
-
+       
+    itemInfo(item){
+          let payload={'item' :item};
+          this.navCtrl.push(ItemDetailPage, payload)
+    }
 
   	getLastItem(){ 		
     	console.log('ITEMS user_id: '+this.user_id);

@@ -24,7 +24,7 @@
 <ion-content padding>    
     <ion-list inset>
         <div *ngIf="lastModified.length>0;else empty">
-			<button ion-item *ngFor="let item of lastModified">
+			<button ion-item *ngFor="let item of lastModified" (click)=itemInfo(item)>
 			  <h2>{{ item?.subject }}</h2>
 			</button>            
         </div>
