@@ -110,10 +110,6 @@ export class Note {
 	constructor(public params: NavParams,
     			public viewCtrl: ViewController) {
 		this.note_text=params.get('text');
-		console.log('note_text');
-		console.log(this.note_text);
-   		console.log('note');
-   		console.log(params.get('text'));
  	}	
 
 	dismiss() {
