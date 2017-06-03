@@ -1,55 +1,72 @@
 
 	<ion-header>
 	  <ion-navbar>
-	    <ion-title>item n°{{item?.ID}}</ion-title>
+	    <ion-title>item n°{{item_detail?.item_id}}</ion-title>
 	  </ion-navbar>
 	</ion-header>
 	<ion-content>
-					<form [formGroup]="form" (ngSubmit)="saveEntry()">
-						<ion-item>
-					  	 	<ion-label><h2>Subject</h2></ion-label>
-				  	 		<ion-label>{{item?.subject}}</ion-label>
-			  	 		</ion-item>
-			 			<ion-item>
-					  	 	<ion-label><h2>User</h2></ion-label>
-				  	 		<ion-label>{{item?.user}}</ion-label>
-			  	 		</ion-item>
-			 			<ion-item>
-					  	 	<ion-label><h2>Category</h2></ion-label>
-				  	 		<ion-label>{{item?.category}}</ion-label>
-			  	 		</ion-item>
-			 			<ion-item>
-					  	 	<ion-label><h2>Workflow</h2></ion-label>
-				  	 		<ion-label>{{item?.workflow}}</ion-label>
-			  	 		</ion-item>
-			 			<ion-item>
-					  	 	<ion-label><h2>Current status</h2></ion-label>
-				  	 		<ion-label>{{item?.status}}</ion-label>
-			  	 		</ion-item>
-						<!-- 
-						####ready for changing status flow 
-						<ion-item>
-					  	 	<ion-label><h2>Change Status</h2></ion-label>
-				  	 			<ion-select>
-									<ion-option value="{{ status.ID }}" *ngFor="let status of statusList">{{ status.definition }}</ion-option>
-								</ion-select>
-			  	 		</ion-item> -->
-			 			<ion-item>
-				  	 		<ion-label><h2>Comment</h2></ion-label>
-			 				<ion-label>{{item?.comment}}</ion-label>
-			  	 		</ion-item>
-			  	 		<!-- <div text-center>
-				    		<button ion-button type="submit" small round>Confirm</button>
-			  	 		</div> -->
-			    </form>
-	    		<ion-grid>
-		    	  	<ion-row>
-			    	    <ion-col>
-				    		<button ion-button round icon-left small (click)=getNotes() color="secondary"><ion-icon  name="text"></ion-icon> Notes</button>
-				    	</ion-col>
-			    	  	<ion-col>
-					    	<button ion-button round icon-left small (click)=getHistory() color="secondary"><ion-icon  name="text"></ion-icon> History</button>
-					    </ion-col>
-			    	</ion-row>
-	    		</ion-grid>
+			<!-- <form [formGroup]="form" (ngSubmit)="saveEntry()"> -->
+ 			<ion-list>
+ 				<ion-item (click)=moreInfo(item_detail?.subject)>
+			  	 	<ion-label><h2>Subject</h2></ion-label>
+		  	 		<ion-label>{{item_detail?.subject}}</ion-label>
+	  	 		</ion-item>
+	 			<ion-item (click)=moreInfo(item_detail?.user)>
+			  	 	<ion-label><h2>User</h2></ion-label>
+		  	 		<ion-label>{{item_detail?.user}}</ion-label>
+	  	 		</ion-item>
+	 			<ion-item (click)=moreInfo(item_detail?.category)>
+			  	 	<ion-label><h2>Category</h2></ion-label>
+		  	 		<ion-label>{{item_detail?.category}}</ion-label>
+	  	 		</ion-item>
+	 			<ion-item (click)=moreInfo(item_detail?.workflow)>
+			  	 	<ion-label><h2>Workflow</h2></ion-label>
+		  	 		<ion-label>{{item_detail?.workflow}}</ion-label>
+	  	 		</ion-item>
+	 			<ion-item (click)=moreInfo(item_detail?.status)>
+			  	 	<ion-label><h2>Current status</h2></ion-label>
+		  	 		<ion-label>{{item_detail?.status}}</ion-label>
+	  	 		</ion-item>
+				<!-- ####ready for changing status flow
+				<ion-item>
+			  	 	<ion-label><h2>Change Status</h2></ion-label>
+		  	 			<ion-select>
+							<ion-option value="{{ status.ID }}" *ngFor="let status of statusList">{{ status.definition }}</ion-option>
+						</ion-select>
+	  	 		</ion-item> -->
+	 			<ion-item (click)=moreInfo(item_detail?.comment)>
+		  	 		<ion-label><h2>Comment</h2></ion-label>
+	 				<ion-label>{{item_detail?.comment}}</ion-label>
+	  	 		</ion-item>
+	 		<!-- <div text-center>
+    		<button ion-button type="submit" small round>Confirm</button>
+	 		</div> -->
+		    <div *ngIf="custom_fields.length>0;else empty">
+				  	<ion-list-header>
+					    Custom Fields
+				  	</ion-list-header>
+			    	<ion-item *ngFor="let cf of custom_fields"> 	
+				  	 	<ion-label><h2>{{cf.cf_definition}}</h2></ion-label>
+			  	 		<ion-label>{{cf.cf_value}}</ion-label>
+		  	 		</ion-item>
+		    </div>
+ 		</ion-list>
+	    <ng-template #empty>
+	    	<button ion-button outline icon-left color="danger" disabled full>
+	    		<ion-icon name="alert">
+				</ion-icon>
+	    		No Custom fields for this item yet.
+			</button>
+		</ng-template>
+		<!-- </form> -->
+		<ion-grid>
+		  	<ion-row>
+	    	    <ion-col>
+		    		<button ion-button outline icon-left small (click)=getNotes() block color="primary"><ion-icon  name="text"></ion-icon> Notes</button>
+		    	</ion-col>
+	    	  	<ion-col>
+			    	<button ion-button outline icon-left small (click)=getHistory() block color="primary"><ion-icon  name="text"></ion-icon> History</button>
+			    </ion-col>
+	    	</ion-row>
+		</ion-grid>
 	</ion-content>

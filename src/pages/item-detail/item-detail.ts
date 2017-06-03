@@ -16,6 +16,8 @@ export class ItemDetailPage {
 	public form : FormGroup;
  	private url : string  = 'http://localhost:8080/ionic_php/';
  	private item:any =this.navParams.get('item');
+ 	public custom_fields:any=[];
+ 	public item_detail:any=[];
  	public statusList:any=[];
  	public loader = this.loadingCtrl.create({
 				content: "Accessing Item's detail ..."
@@ -37,8 +39,9 @@ export class ItemDetailPage {
 		   "status"                  	: ["", Validators.required],
 		   "user"                  		: ["", Validators.required],
 		   "category"                  	: ["", Validators.required],
+		   "count"                  	: ["", Validators.required],
 		   "workflow"                  	: ["", Validators.required]
-		});
+		});	
     }
   
     ionViewDidLoad() {
@@ -49,6 +52,10 @@ export class ItemDetailPage {
     openPage(page){
     	this.navCtrl.setRoot(page.component);
     }
+
+    saveEntry(){
+    	//sending modification to server later
+    }
   
  	sendNotification(message)  : void{
 		let notification = this.toastCtrl.create({
@@ -57,9 +64,10 @@ export class ItemDetailPage {
 		});
 		notification.present();
  	}
+
  	getStatusList(){
  		console.log('status: '+this.item.status_id);
- 		let body     : string   = "key=status_id&status_id=" + this.item.status_id,
+ 		let body     : string   = "key=status&status_id=" + this.item.status_id,
  					type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
  					headers  : any      = new Headers({ 'Content-Type': type}),
  					options  : any      = new RequestOptions({ headers: headers });
@@ -69,24 +77,33 @@ export class ItemDetailPage {
  				this.statusList = data;
  				console.log('statusList');
  				console.log(this.statusList);
- 				this.loader.dismissAll();     	
  		});
  	}
 
+ 	moreInfo(text){
+		this.sendNotification(text);
+		console.log(text);
+ 	}
+
  	getItemInfo(){
- 		let body     : string   = "key=item_detail&item_id=" + this.item.ID,
+    	let loader = this.loadingCtrl.create({
+				content: "Logging in..."
+		});
+		loader.present();
+ 		let body     : string   = "key=detail&item_id=" + this.item.ID,
  					type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
  					headers  : any      = new Headers({ 'Content-Type': type}),
  					options  : any      = new RequestOptions({ headers: headers });
  		this.http.post(this.url+'get_item_detail.php', body, options)
  			.subscribe((data) => {
- 				this.item = data.json();
- 				this.item=this.item[0];
- 				this.loader.dismissAll();     	
- 				console.log('this.item');
- 				console.log(this.item);
- 				this.sendNotification('Selected item n°'+this.item.ID);
- 		});
+ 				console.log('data');
+ 				console.log(data);
+ 				this.item_detail=data.json().item[0];
+ 				this.custom_fields=data.json().custom_fields;
+				loader.dismissAll();   
+ 				this.sendNotification('Click on the field to expand');
+ 			}
+ 		);
  	}
 
  	getNotes(){ 		

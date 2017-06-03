@@ -2,6 +2,7 @@ import 'rxjs/add/operator/map';
 import { TabsPage } from '../tabs/tabs';
 import { ItemsPage } from '../items/items';
 import { ProfilePage } from '../profile/profile';
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { Component,ViewChild } from '@angular/core';
 import { IonicStorageModule,Storage } from '@ionic/storage';
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -27,6 +28,7 @@ export class LoginPage {
 				public http       : Http,
 				public np         : NavParams,
 				public fb         : FormBuilder,
+				private splashScreen: SplashScreen,
 				public loadingCtrl:LoadingController,
 				public toastCtrl  : ToastController,
 				private secureStorage: SecureStorage){
@@ -37,7 +39,9 @@ export class LoginPage {
 	}
 
 	ionViewWillEnter(){
+		this.splashScreen.show();
 	 	this.resetFields();
+		this.splashScreen.hide();
 	}
 
 	sendLogs(){

@@ -13,7 +13,7 @@ import { LastItemPage } from '../pages/last-item/last-item';
 import { LastModifiedPage } from '../pages/last-modified/last-modified';
 import { SecureStorage } from '@ionic-native/secure-storage';
 import { BrowserModule } from '@angular/platform-browser';
-import { ItemNotesPage } from '../pages/item-notes/item-notes';
+import { ItemNotesPage,Note } from '../pages/item-notes/item-notes';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { IonicStorageModule } from '@ionic/storage';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -32,6 +32,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     ItemNotesPage,
     ItemDetailPage,
     LastItemPage,
+    Note,
     MainsysPage,
     LoginPage
   ],
@@ -49,6 +50,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
     LastItemPage,
     HistoryPage,
     LastModifiedPage,
+    Note,
     ItemNotesPage,
     ItemDetailPage,
     TabsPage,
