@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { IonicStorageModule,Storage } from '@ionic/storage';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { NavController, NavParams,ToastController,ModalController, ViewController } from 'ionic-angular';
 
@@ -10,16 +11,23 @@ import { NavController, NavParams,ToastController,ModalController, ViewControlle
 })
 export class ItemNotesPage {
 
+	public form : FormGroup;
 	public notes: any=[];
+	newNote:string='';
+	private user_id:number=-999;
  	public item_id:number =this.navParams.get('item_id');
 	public url : string  = 'http:///localhost:8080/ionic_php/get_item_note.php';
 
 	constructor(public navCtrl: NavController,
 				public http: Http,
 				public storage	  : Storage,
+				public fb         : FormBuilder,
 				public toastCtrl  : ToastController,
 				public modalCtrl: ModalController,
 				public navParams: NavParams) {
+		this.form = fb.group({
+					"newNote"                  : ["", Validators.required]
+		});
 
 	}
 
@@ -34,12 +42,13 @@ export class ItemNotesPage {
     
     ionViewWillEnter(){
         this.loadNotes();
+	 	this.resetFields();
 		console.log('ionViewDidLoad NotePage');
 
     }
 
     loadNotes(){    	
-     	let body     : string   = "key=note&item_id="+this.item_id,
+     	let body     : string   = "key=getNote&item_id="+this.item_id,
 				type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
 				headers  : any      = new Headers({ 'Content-Type': type}),
 				options  : any      = new RequestOptions({ headers: headers });
@@ -51,6 +60,38 @@ export class ItemNotesPage {
       	   	this.notes = data;
 			this.sendNotification('Click on the field to expand');
       	});
+    }
+    addNote(){
+		console.log('before this.user_id: '+this.user_id);
+    	if(this.newNote===''){
+			this.sendNotification('Note field is empty');
+    	}else{
+	  		this.storage.get('user').then((val) => {
+    			this.user_id=val.ID;
+    			console.log('user_id: '+val.ID+',item_id: '+this.item_id);
+
+    			let body     : string   = "key=newNote&user_id=" + val.ID + "&item_id=" + this.item_id+"&note="+this.newNote,
+    						type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+    						headers  : any      = new Headers({ 'Content-Type': type}),
+    						options  : any      = new RequestOptions({ headers: headers });
+
+    			this.http.post(this.url, body, options)
+    				.subscribe((data) => {
+    					console.log('data');
+    					console.log(data);
+    					console.log('data.json()');
+    					console.log(data.json());
+    					if(data.json()===true){
+							this.sendNotification('Note sent.');    					
+			 				this.resetFields();
+    					}else{
+							this.sendNotification('Error with the request, please contact support');    					
+							console.log(data.json());
+    					}
+    			});
+
+		  	})
+    	}    		
     }
 
  	helpNotification(message): void{
@@ -66,6 +107,10 @@ export class ItemNotesPage {
 		   console.log('Dismissed toast');
 		 });
  	}
+
+	resetFields() : void {
+		this.newNote= "";
+	}
 
  	moreInfo(note){ 
  		  let profileModal = this.modalCtrl.create(Note, { text: note });
@@ -96,7 +141,7 @@ export class ItemNotesPage {
   	 		</ion-item>
  			<ion-item>
 	  	 		<ion-label><h2>Date</h2></ion-label>
-		  	 	<ion-label>{{note_text?.creation}}</ion-label>
+		  	 	<ion-label>{{note_text?.creation | date:"EEEE, dd/MM/yy HH:mm"}}</ion-label>
   	 		</ion-item>
   	 		<ion-card-content>
   	 			<p>{{note_text?.note}}</p>
