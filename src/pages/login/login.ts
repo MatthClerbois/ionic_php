@@ -17,8 +17,8 @@ import { IonicPage, NavController, NavParams,ToastController,LoadingController  
 export class LoginPage {
 	//@ViewChild(ProfilePage) test:ProfilePage;
 	public form : FormGroup;
-	user : string='';
-	password : string='';
+	private user : string='';
+	private password : string='';
 	private user_id:number;
 	private url : string  = 'http://localhost:8080/ionic_php/login.php';
 	public user_info:any;
